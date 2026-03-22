@@ -1,0 +1,22 @@
+-- Create a Database Named dbGPS
+
+USE [dbGPS]
+GO
+
+/****** Object:  Table [dbo].[tblLocation]    Script Date: 3/22/2026 5:02:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tblLocation](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[DeviceName] [nvarchar](255) NULL,
+	[Latitude] [decimal](18, 10) NULL,
+	[Longitude] [decimal](18, 10) NULL,
+	[DateTime] [datetime] NULL
+) ON [PRIMARY]
+
+GO
+

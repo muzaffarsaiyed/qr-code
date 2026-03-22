@@ -1,0 +1,77 @@
+-- Database name dbPaySlip
+
+USE [dbPaySlip]
+GO
+
+/****** Object:  Table [dbo].[Login]    Script Date: 3/22/2026 5:02:13 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Login](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Username] [varchar](50) NULL,
+	[Password] [varchar](50) NULL
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+/****** Object:  Table [dbo].[Medical]    Script Date: 3/22/2026 5:02:13 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Medical](
+	[ID] [float] NULL,
+	[CoverNo] [nvarchar](255) NULL,
+	[PilgrimName] [nvarchar](255) NULL,
+	[BirthDate] [nvarchar](255) NULL,
+	[Gender] [nvarchar](255) NULL,
+	[MobileNo] [nvarchar](255) NULL,
+	[PassportNo] [nvarchar](255) NULL,
+	[BloodGroup] [nvarchar](255) NULL,
+	[LastName] [nvarchar](255) NULL,
+	[Address] [nvarchar](255) NULL,
+	[FatherName] [nvarchar](255) NULL,
+	[SpouseName] [nvarchar](255) NULL,
+	[Married] [nvarchar](255) NULL
+) ON [PRIMARY]
+
+GO
+
+/****** Object:  Table [dbo].[tblEmergency]    Script Date: 3/22/2026 5:02:13 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tblEmergency](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CoverNo] [nvarchar](50) NULL,
+	[LastName] [nvarchar](255) NULL,
+	[PilgrimName] [nvarchar](255) NULL,
+	[Address] [nvarchar](max) NULL,
+	[Latitude] [decimal](18, 10) NULL,
+	[Longitude] [decimal](18, 10) NULL,
+	[CreatedDate] [datetime] NULL,
+	[Remarks] [nvarchar](max) NULL,
+	[Image1Path] [nvarchar](max) NULL,
+	[Image2Path] [nvarchar](max) NULL,
+	[VideoPath] [nvarchar](max) NULL,
+	[AudioPath] [nvarchar](max) NULL,
+	[IsResolved] [bit] NULL DEFAULT ((0))
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
