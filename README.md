@@ -28,7 +28,7 @@ Usage
 Tech Stack
 - Frontend: HTML/CSS/JavaScript/ASP.Net MVC
 - QR Generation: qrcode library
-- Database: SQL Server
+- Database: SQL Server (See "SQL Query 1.txt" and "SQL Query 2.txt")
 
 
 Contributing
