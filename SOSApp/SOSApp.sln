@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOSApp", "SOSApp.csproj", "{3571B82C-41D0-419D-9BB3-79D4AF936475}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3571B82C-41D0-419D-9BB3-79D4AF936475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3571B82C-41D0-419D-9BB3-79D4AF936475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3571B82C-41D0-419D-9BB3-79D4AF936475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3571B82C-41D0-419D-9BB3-79D4AF936475}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B62B2B1-D432-4D4A-9FE1-1B96802E792C}
+	EndGlobalSection
+EndGlobal
