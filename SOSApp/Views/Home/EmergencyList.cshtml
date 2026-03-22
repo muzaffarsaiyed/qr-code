@@ -1,0 +1,116 @@
+﻿@model IEnumerable <SOSApp.Models.Emergency>
+@{
+    ViewBag.Title = "Emergency List";
+}
+<head>
+    <style>
+        .container {
+            margin-left: 0;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Emergency List</h2>
+        <div style="text-align: right; width: 100%;">
+            <a href="@Url.Action("Logout", "Home")" class="btn btn-secondary">Logout</a>
+            </div>
+            <table class="table table-bordered table-striped ">
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Cover No</th>
+                        <th>Pilgrim Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>Remarks</th>
+                        <th>Created Date</th>
+                        <th>Map</th>
+                        <th>Nearest SHI</th>
+                        <th>SHI Location</th>
+                        <th>Image 1</th>
+                        <th>Image 2</th>
+                        <th>Video</th>
+                        <th>Audio</th>
+                        <th>Resolved</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.CoverNo</td>
+                            <td>@item.PilgrimName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Address</td>
+                            <td>@item.Remarks</td>
+                            <td>@(item.CreatedDate?.ToString("dd-MM-yyyy hh:mm tt") ?? "N/A")</td>
+
+                            <td>
+                                @if (item.Latitude.HasValue && item.Longitude.HasValue)
+                                {
+                                    <a href="https://www.google.com/maps/search/?api=1&query=@item.Latitude,@item.Longitude" target="_blank" class="btn btn-sm btn-info">Map</a>
+                                }
+                                else
+                                {
+                                    <span>N/A</span>
+                                }
+                            </td>
+                            <td>@item.DeviceName</td>
+                            <td>
+                                @if (item.SHILatitude.HasValue && item.SHILongitude.HasValue && item.SHILatitude != 0 && item.SHILongitude != 0)
+                                {
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=@item.Latitude,@item.Longitude&destination=@item.SHILatitude,@item.SHILongitude" target="_blank" class="btn btn-sm btn-info">SHI Map Directions</a>
+
+                                }
+                                else
+                                {
+                                    <span>N/A</span>
+                                }
+                            </td>
+
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Image1Path))
+                                {
+                                    <img src="@item.Image1Path" alt="Image 1" style="max-width: 100px; max-height: 100px;" />
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Image2Path))
+                                {
+                                    <img src="@item.Image2Path" alt="Image 2" style="max-width: 100px; max-height: 100px;" />
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.VideoPath))
+                                {
+                                    <video src="@item.VideoPath" controls style="max-width: 200px; max-height: 150px;"></video>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.AudioPath))
+                                {
+                                    <audio src="@item.AudioPath" controls></audio>
+                                }
+                            </td>
+                            <td>
+                                @if (!item.IsResolved)
+                                {
+                                    <form method="post" action="@Url.Action("ResolveEmergency", "Home", new { id = item.ID })">
+                                        <button type="submit" class="btn btn-sm btn-success">Resolve</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span>Resolved</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+</body>

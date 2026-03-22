@@ -1,0 +1,126 @@
+﻿@model SOSApp.Models.Medical
+@{
+    ViewBag.Title = "Emergency";
+}
+
+<div class="container">
+    <h2>Emergency Details</h2>
+
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+    }
+
+    @using (Html.BeginForm("Emergency", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.CoverNo)
+        @Html.HiddenFor(m => m.LastName)
+        @Html.HiddenFor(m => m.PilgrimName)
+        @Html.HiddenFor(m => m.Address)
+
+        <div class="form-group">
+            <label>Cover No:</label>
+            @Html.DisplayFor(m => m.CoverNo)
+        </div>
+
+        <div class="form-group">
+            <label>Coverhead Name:</label>
+            @Html.DisplayFor(m => m.PilgrimName)
+        </div>
+
+        <div class="form-group">
+            <label>Last Name:</label>
+            @Html.DisplayFor(m => m.LastName)
+        </div>
+
+        <div class="form-group">
+            <label>Address:</label>
+            @Html.DisplayFor(m => m.Address)
+        </div>
+
+        <div class="form-group">
+            <label>Remarks:</label>
+            @Html.TextBoxFor(m => m.Remarks, new { @class = "form-control", id = "remarks" })
+        </div>
+
+        <div class="form-group">
+            @*<label>Latitude:</label>*@
+            @Html.HiddenFor(m => m.Latitude, new { @class = "form-control", id = "latitude" })
+        </div>
+
+        <div class="form-group">
+            @*<label>Longitude:</label>*@
+            @Html.HiddenFor(m => m.Longitude, new { @class = "form-control", id = "longitude" })
+        </div>
+
+        <div class="form-group">
+            <label>Image 1 (Optional):</label>
+            <input type="file" name="Image1" accept="image/*" capture="user" />
+        </div>
+
+        <div class="form-group">
+            <label>Image 2 (Optional):</label>
+            <input type="file" name="Image2" accept="image/*" capture="user" />
+        </div>
+
+        <div class="form-group">
+            <label>Video (Optional, max 30 seconds):</label>
+            <input type="file" name="Video" accept="video/*" capture="user" />
+        </div>
+
+        <div class="form-group">
+            <label>Audio (Optional, max 30 seconds):</label>
+            <input type="file" name="Audio" accept="audio/*" capture="user" />
+        </div>
+
+        <button type="submit" class="btn btn-danger">Submit Emergency</button>
+    }
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            document.getElementById("latitude").value = position.coords.latitude;
+            document.getElementById("longitude").value = position.coords.longitude;
+        }, function (error) {
+            console.error("Error getting location:", error);
+        });
+    });
+</script>
+
+
+<script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+        let maxFileSize = 10 * 1024 * 1024; // 10 MB (adjust as needed)
+
+        let image1 = document.querySelector('input[name="Image1"]');
+        let image2 = document.querySelector('input[name="Image2"]');
+        let video = document.querySelector('input[name="Video"]');
+        let audio = document.querySelector('input[name="Audio"]');
+
+        if (image1.files.length > 0 && image1.files[0].size > maxFileSize) {
+            alert('Image 1 is too large. Maximum file size is 10 MB.');
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+
+        if (image2.files.length > 0 && image2.files[0].size > maxFileSize) {
+            alert('Image 2 is too large. Maximum file size is 10 MB.');
+            event.preventDefault();
+            return;
+        }
+
+        if (video.files.length > 0 && video.files[0].size > maxFileSize) {
+            alert('Video is too large. Maximum file size is 10 MB.');
+            event.preventDefault();
+            return;
+        }
+
+        if (audio.files.length > 0 && audio.files[0].size > maxFileSize) {
+            alert('Audio is too large. Maximum file size is 10 MB.');
+            event.preventDefault();
+            return;
+        }
+
+        // Add video and audio duration checks here (if needed)
+    });
+</script>
